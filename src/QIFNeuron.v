@@ -10,11 +10,15 @@ module QIFNeuron (
   reg signed [7:0] V;  //that stores the membrane voltage 
   assign V_mem = V;    // we send the voltage to the output pins 
   always @(posedge clk) begin
+    
     if (!rst_n) begin   // when the reset is active start from 0 
       V <= 8'sd0;
     end else begin 
-      V <= V + I_syn;
-    end 
-  end 
-
+      if (V>=8'sd50) begin
+        V<=-8'sd20;
+      end else begin
+        V <= V + (I_syn >>> 2) + ((V >>> 3)*(V >>> 3));
+      end
+    end
+  end
 endmodule 
