@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Your Name
+ * Copyright (c) 2024 Derya Goktepe
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -16,14 +16,7 @@ module tt_um_qif_neuron (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-    // unsued bidirectional pins
-  assign uio_out = 8'd0;
-  assign uio_oe  = 8'd0;
-
-  // List all unused inputs to prevent warnings
-    wire _unused = &{ena, uio_in, 1'b0};
-
-    // QIF Neuron module 
+     // QIF Neuron module 
     QIFNeuron neuron (
         .clk(clk),
         .rst_n(rst_n),
@@ -31,5 +24,14 @@ module tt_um_qif_neuron (
         .V_mem(uo_out)    //Neuron outputs goes to chip output 
         
     );
+
+    // unsued bidirectional pins
+  assign uio_out = 8'd0;
+  assign uio_oe  = 8'd0;
+
+  // unused signal warning
+    wire _unused = &{ena, uio_in, 1'b0};
+
+
 
 endmodule
