@@ -22,7 +22,7 @@ async def test_project(dut):
     dut.rst_n.value = 1
     await ClockCycles(dut.clk, 1)
 
-     assert dut.uo_out.value.integer == 0
+    assert dut.uo_out.value.integer == 0
 
     dut.ui_in.value = 16
 
